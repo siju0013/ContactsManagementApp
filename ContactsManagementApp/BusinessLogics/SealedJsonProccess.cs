@@ -19,7 +19,7 @@ namespace ContactsManagementApp.BusinessLogics
             else
             {
                 string json=JsonConvert.SerializeObject(input);
-                File.WriteAllTextAsync(path, json);
+               await File.WriteAllTextAsync(path, json);
                 return true;
             }
         }

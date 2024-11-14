@@ -16,29 +16,29 @@ namespace ContactsManagementApp.Controllers
             path= Path.Combine(Directory.GetCurrentDirectory(), "contact.json");
             _service = service;
         }
-        [HttpGet("getAllContact")]
-        public async Task<IActionResult> getAllContact()
+        [HttpGet("GetAllContact")]
+        public IActionResult GetAllContact()
         {
-            var obj=await _service.readJsonFile(path);
-            return Ok(obj);
+            var ContactList= _service.GetContacts(path);
+            return Ok(ContactList);
         }
         [HttpPost("Create")]
         public async Task<IActionResult> CreateOrModify(ContactObj input)
         {
-            var res = await _service.Create(input, path);
-            return Ok(res);
+            var response = await _service.Create(input, path);
+            return Ok(response);
         }
         [HttpPut("Modify/{ID}")]
         public async Task<IActionResult> CreateOrModify(int ID, ContactObj input)
         {
-            var res = await _service.Modify(ID,input, path);
-            return Ok(res);
+            var response = await _service.Modify(ID,input, path);
+            return Ok(response);
         }
         [HttpDelete("DeleteContact/{ID}")]
         public async Task<IActionResult> DeleteContact(int ID)
         {
-            var res = await _service.Delete(path,ID);
-            return Ok(res);
+            var response = await _service.Delete(path,ID);
+            return Ok(response);
         }
 
     }

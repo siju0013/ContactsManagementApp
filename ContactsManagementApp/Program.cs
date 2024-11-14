@@ -1,4 +1,5 @@
 using ContactsManagementApp.BusinessLogics;
+using ContactsManagementApp.DataServices;
 using ContactsManagementApp.Handler;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
-builder.Services.AddSingleton<IContactService, ContactService>();
+builder.Services.AddTransient<IContactService, ContactService>();
+builder.Services.AddSingleton(typeof(DataService), (srv) => { var data = new DataService(); data.LoadData("contact.json").Wait(); return data; });
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
