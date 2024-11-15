@@ -17,16 +17,4 @@ This api project is designed like layered architecture. Reading json file and li
 
 Note: Since read and write operations is hapenning in json file. When multiple request happens at same time there is a chance of impacting the integrity of data. For such operation is better to use other sources like sqlite, sql etc
 
-Framework Used for Web Applciation
-==================================
-Angular 17 & Boostrap 5
 
-Indtallation of WebApplication
-============================
-1.Clone the repo:
-      git clone https://github.com/siju0013/ContactsManagementApp.git
-2. Install NPM Packages
-    npm install
-3. For running application and for running in new browser
-    ng s -o
-Api endpoint are stored in Environment ts file. Boostrap5 is used for layout and design. Boostrap css and js path is added in angular.json file. Here Appcomponent is working as parent component and child components are modify and List. Communication between parent & child component is used with the help of @Input() and @Output decorator. Rxjs is used make observable api request. Alert is used for error handling.
