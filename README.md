@@ -15,7 +15,7 @@ Installation
     http://localhost:5211/swagger
 This api project is designed like layered architecture. Reading json file and listing contacts is done globaly using sigleton class. All logics are written in bussines logic folder containing a class. This communicate with dataservice for all crud operation activities and list full contacts. Validation, mandatory fields are defined within the model class. Exceptions ar handled globally using IExceptionHandler. For Implementing exception globaly, midlewear is being used. All Contacts written in contact.json file.
 
-Note: Since read and write operations is hapenning in json file. There is a possibility of unavailibilty of endpoint. For such operation is better to use other sorces like sqlite, sql etc
+Note: Since read and write operations is hapenning in json file. When multiple request happens at same time there is a chance of impacting the integrity of data. For such operation is better to use other sources like sqlite, sql etc
 
 Framework Used for Web Applciation
 ==================================
