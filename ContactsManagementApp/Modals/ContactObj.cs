@@ -1,9 +1,14 @@
-﻿namespace ContactsManagementApp.Modals
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ContactsManagementApp.Modals
 {
     public class ContactObj
     {
-        public required string FirstName { get; set; }
-        public required string LastName { get; set; }
+        [Required]
+        public  string FirstName { get; set; }
+        [Required]
+        public  string LastName { get; set; }
+        [EmailAddress]
         public required string Email { get; set; }
     }
 }

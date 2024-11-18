@@ -25,18 +25,61 @@ namespace ContactsManagementApp.Controllers
         [HttpPost("Create")]
         public async Task<IActionResult> CreateOrModify(ContactObj input)
         {
+            
+            if(input.FirstName == "string")
+            {
+                ModelState.AddModelError("FirstName", "First Name is not a valid string");
+            }else if(input.Email == "user@example.com")
+            {
+                ModelState.AddModelError("Email", "Email is not a valid Email Address");
+            }
+            else if(input.LastName == "string")
+            {
+                ModelState.AddModelError("LastName", "Last Name is not a valid string");
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var response = await _service.Create(input, path);
             return Ok(response);
         }
         [HttpPut("Modify/{ID}")]
-        public async Task<IActionResult> CreateOrModify(int ID, ContactObj input)
+        public async Task<IActionResult> Modify(int ID, ContactObj input)
         {
+            
+            if (ID == 0) {
+                ModelState.AddModelError("ID", "Please select contact to be modified");
+                return BadRequest(ModelState);
+            }
+            else if (input.FirstName == "string")
+            {
+                ModelState.AddModelError("FirstName", "First Name is not a valid string");
+                return BadRequest(ModelState);
+            }
+            else if (input.Email == "user@example.com")
+            {
+                ModelState.AddModelError("Email", "Email is not a valid Email Address"); 
+            }
+            else if (input.LastName == "string")
+            {
+                ModelState.AddModelError("LastName", "Last Name is not a valid string");
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var response = await _service.Modify(ID,input, path);
             return Ok(response);
         }
         [HttpDelete("DeleteContact/{ID}")]
         public async Task<IActionResult> DeleteContact(int ID)
         {
+            if (ID == 0)
+            {
+                ModelState.AddModelError("ID", "Please select contact to  delete");
+                return BadRequest(ModelState);
+            }
             var response = await _service.Delete(path,ID);
             return Ok(response);
         }
